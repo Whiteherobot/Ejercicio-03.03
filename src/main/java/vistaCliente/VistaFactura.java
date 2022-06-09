@@ -23,7 +23,7 @@ public class VistaFactura extends JFrame implements ActionListener {
     private List<JLabel> jLabelList;
     private List<JTextField> jtextFieldList;
     private List<JButton> jButtonList;
-    private JComboBox<String> combo1;
+    private JComboBox jComboBox1;
     private List<JRadioButton>jRadioButton;
     private FacturaControl facturaControl;
     public VistaFactura(String title){
@@ -46,8 +46,9 @@ public class VistaFactura extends JFrame implements ActionListener {
        this.jPanelList.add(new JPanel());
        this.jPanelList.add(new JPanel());
        this.jPanelList.add(new JPanel());
+       this.jPanelList.add(new JPanel());
     }
-         public void iniciarComponentes(){
+       public void iniciarComponentes(){
        this.jPanelList = new ArrayList<>();
        this.jPanelList.add(new JPanel());
        this.jPanelList.add(new JPanel());
@@ -57,10 +58,10 @@ public class VistaFactura extends JFrame implements ActionListener {
        this.jPanelList.add(new JPanel());
        this.jPanelList.add(new JPanel());
        this.jPanelList.add(new JPanel());
-       
       
-       this.jPanelList.get(0).setBorder(BorderFactory.createTitledBorder("Panel Principal"));
-       this.jPanelList.get(0).setLayout(new GridLayout(6,1));
+      
+       this.jPanelList.get(0).setBorder(BorderFactory.createTitledBorder("Facturas"));
+       this.jPanelList.get(0).setLayout(new GridLayout(7,1));
        this.jPanelList.get(0).add(this.jPanelList.get(1));
        this.jPanelList.get(0).add(this.jPanelList.get(2));
        this.jPanelList.get(0).add(this.jPanelList.get(3));
@@ -74,6 +75,7 @@ public class VistaFactura extends JFrame implements ActionListener {
        this.jPanelList.get(2).add(this.jLabelList.get(1));
        this.jPanelList.get(3).add(this.jLabelList.get(2));
        this.jPanelList.get(4).add(this.jLabelList.get(3));
+       this.jPanelList.get(5).add(this.jLabelList.get(5));
        this.jPanelList.get(6).add(this.jLabelList.get(4));
        
        
@@ -84,16 +86,26 @@ public class VistaFactura extends JFrame implements ActionListener {
        this.jPanelList.get(4).add(this.jtextFieldList.get(3));
        this.jPanelList.get(4).add(this.jtextFieldList.get(4));
        this.jPanelList.get(4).add(this.jtextFieldList.get(5));
+       
+       
 
               
        this.iniciarBotones();
-       this.jPanelList.get(5).add(this.jButtonList.get(0));
-       this.jPanelList.get(5).add(this.jButtonList.get(1));
+       this.jPanelList.get(7).add(this.jButtonList.get(0));
+       this.jPanelList.get(7).add(this.jButtonList.get(1));
 
+       this.iniciarCombo1();
+       this.jPanelList.get(6).add(this.jComboBox1);
+       this.jPanelList.get(6).add(this.jComboBox1);
        
+       this.iniciarRadio();
+       this.jPanelList.get(5).add(this.jRadioButton.get(0));
+       this.jPanelList.get(5).add(this.jRadioButton.get(1));
+
    }
      public void iniciarEtiquetas(){
        this.jLabelList = new ArrayList<>();
+       this.jLabelList.add(new JLabel());
        this.jLabelList.add(new JLabel());
        this.jLabelList.add(new JLabel());
        this.jLabelList.add(new JLabel());
@@ -104,7 +116,7 @@ public class VistaFactura extends JFrame implements ActionListener {
        this.jLabelList.get(1).setText("Ingrese el nombre del producto: ");
        this.jLabelList.get(2).setText("Ingrese numero de contacto: ");
        this.jLabelList.get(3).setText("Ingrese la fecha de Registro: AAAA/MM/DD");
-
+       
    }
 
    public void iniciarCuadrosTexto(){
@@ -137,26 +149,30 @@ public class VistaFactura extends JFrame implements ActionListener {
        this.jButtonList.get(1).addActionListener(this);
        
    }
-   public void iniciarCombo(){
-       setLayout(null);
-        combo1=new JComboBox<String>();
-        add(combo1);
-        combo1.addItem("si");
-        combo1.addItem("no");
-        
-        combo1.addActionListener (this);
-
-   }
    public void iniciarRadio(){
-//   JRadioButton rbtn1=new JRadioButton("Consumidor Final",true);  
-//   JRadioButton no=new JRadioButton("Con Datos",true);  
-//   this.jRadioButton.get(rbtn1);
-//   this.jRadioButton
+       this.jRadioButton = new ArrayList<>();
+       this.jRadioButton.add(new JRadioButton("Factura con datos"));
+       this.jRadioButton.add(new JRadioButton("Consumidor Final"));
+       
+       this.jRadioButton.get(0).addActionListener(this);
+       this.jRadioButton.get(1).addActionListener(this);
+   
+       this.jPanelList.get(3).add(this.jRadioButton.get(0));
    }
+         public void iniciarCombo1(){
+        this.jComboBox1 = new JComboBox();
+        this.jComboBox1.addItem("Desea imprimir");
+        this.jComboBox1.addItem("SI");
+        this.jComboBox1.addItem("NO");
+        
+        
+        this.jPanelList.get(4).add(this.jComboBox1);
+    }
+   
     @Override
     public void actionPerformed(ActionEvent e) {
      if(e.getSource().equals(this.jButtonList.get(0))){
-            String [] params = new String[7];
+            String [] params = new String[6];
             params[0]=this.jtextFieldList.get(0).getText();
             params[1]=this.jtextFieldList.get(1).getText();
             params[2]=this.jtextFieldList.get(2).getText();
@@ -164,7 +180,7 @@ public class VistaFactura extends JFrame implements ActionListener {
             params[4]=this.jtextFieldList.get(4).getText();
             params[5]=this.jtextFieldList.get(5).getText();
             params[5]=this.jtextFieldList.get(5).getText();
-            params[6]=this.jtextFieldList.get(6).getText();
+
             this.facturaControl.crear(params);
         }
         

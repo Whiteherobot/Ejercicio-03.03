@@ -80,14 +80,10 @@ public class Factura {
 
     @Override
     public String toString() {
-        return "Factura{" + "numeroProducto="
-                + numeroProducto + ", fechaRegistro=" 
-                + fechaRegistro + ", precio=" + precio
-                + ", hora=" + hora  
-                + ", direccion=" + direccion 
-                + ", numeroTelefono=" + numeroTelefono 
-                + '}';
+        return "Factura{" + "numeroProducto=" + numeroProducto + ", fechaRegistro=" + fechaRegistro + ", precio=" + precio + ", direccion=" + direccion + ", numeroTelefono=" + numeroTelefono + '}';
     }
+
+
 
 
     
